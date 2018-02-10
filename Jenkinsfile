@@ -22,7 +22,6 @@ node {
 
     stage "Deploy"
 
-        sh "sed 's#127.0.0.1:31745/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml"
-        sh "kubectl apply -f appName/hello-kenzan/k8s/deployment.yaml"
+	sh "sed 's#127.0.0.1:30400/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-kenzan"
 }
