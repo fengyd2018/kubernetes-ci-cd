@@ -8,7 +8,7 @@ node {
 
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "hello-kenzan"
-    registryHost = "10.104.69.173:5000/"
+    registryHost = "registry.default.svc.cluster.local:5000/"
     imageName = "${registryHost}${appName}:${tag}"
     env.BUILDIMG=imageName
 
@@ -18,7 +18,7 @@ node {
     
     stage "Push"
 
-        sh "docker push http://${imageName}"
+        sh "docker push ${imageName}"
 
     stage "Deploy"
 
